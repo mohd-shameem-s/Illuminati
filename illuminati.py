@@ -10,35 +10,25 @@ def display_menu():
     print("""
     📜 MENU - Illuminati Cyber Toolkit 📜
 
-    1. ✔ Location Finder 📍
-       Track IP geolocation details (Country, City, ISP, etc.)
+    1. ✔ Location Finder 📍- Track IP geolocation details (Country, City, ISP, etc.)
 
-    2. ✔ IP Identifier 🌐
-       Get Hostname, ISP, and Network Details of any IP.
+    2. ✔ IP Identifier 🌐 - Get Hostname, ISP, and Network Details of any IP.
 
-    3. ✔ Network Scanner 🖥️
-       Scan all connected devices in your network.
+    3. ✔ Network Scanner 🖥️ - Scan all connected devices in your network.
 
-    4. ✔ Network Mapper 🗺️
-       Generate a full Network Topology Map.
+    4. ✔ Network Mapper 🗺️- Generate a full Network Topology Map.
 
-    5. ✔ Link Scanner 🔗
-       Scan any website link for vulnerabilities.
+    5. ✔ Link Scanner 🔗 - Scan any website link for vulnerabilities.
 
-    6. ✔ Data Capture 📡
-       Capture and Analyze Real-Time Network Traffic.
+    6. ✔ Data Capture 📡 - Capture and Analyze Real-Time Network Traffic.
 
-    7. ✔ Track Mobile Location 📲
-       Track Live Location of any Mobile Number.
+    7. ✔ Track Mobile Location 📲 - Track Live Location of any Mobile Number.
 
-    8. ✔ SMS Bomber 💣
-       Flood unlimited SMS to the target number.
+    8. ✔ SMS Bomber 💣 - Flood unlimited SMS to the target number.
 
-    9. ✔ Call Bomber 📞
-       Flood unlimited calls to the target number.
+    9. ✔ Call Bomber 📞 - Flood unlimited calls to the target number.
 
-    10.✔ Exit 🚪
-       Quit the Illuminati Cyber Toolkit.
+    10.✔ Exit 🚪 - Quit the Illuminati Cyber Toolkit.
 
     💀 Use Responsibly - Illuminati Hacker Tool 💀
     """)
