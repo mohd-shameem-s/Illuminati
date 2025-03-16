@@ -4,14 +4,23 @@
 import os
 import sys
 import time
-import json
 import string
-import random
-import requests
-import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from utils.provider import APIProvider
-from utils.decorators import MessageDecorator
+
+# Mock implementation of APIProvider
+class APIProvider:
+    def __init__(self, cc, target, mode, delay=0):
+        self.cc = cc
+        self.target = target
+        self.mode = mode
+        self.delay = delay
+        self.api_version = "1.0"  # Example version
+
+    def hit(self):
+        # Simulate making a call
+        print(f"Making a {self.mode} to +{self.cc}{self.target}")
+        time.sleep(self.delay)  # Simulate network delay
+        return True  # Simulate a successful request
 
 def format_phone(num):
     return ''.join([n for n in num if n in string.digits]).strip()
@@ -46,7 +55,6 @@ def workernode(cc, target, count, delay, max_threads):
                 else:
                     failed += 1
                 pretty_print(cc, target, success, failed)
-                time.sleep(delay)
 
     print("Bombing completed!")
 
