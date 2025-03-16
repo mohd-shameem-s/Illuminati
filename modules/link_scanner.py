@@ -1,69 +1,84 @@
-import os
-import re
-import subprocess
+import requests
 import socket
-import netifaces
+import whois
+import urllib.parse
+import re
+import time
 
-def get_local_ip():
-    """ Get the actual local IP address (Not loopback 127.x.x.x) """
+# Function to expand shortened URLs
+def expand_short_url(url):
     try:
-        # Get hostname and resolve local IP
-        hostname = socket.gethostname()
-        local_ip = socket.gethostbyname(hostname)
-
-        # Check if it accidentally got a loopback address
-        if local_ip.startswith("127.") or local_ip == "localhost":
-            interfaces = netifaces.interfaces()
-            for interface in interfaces:
-                addrs = netifaces.ifaddresses(interface)
-                if netifaces.AF_INET in addrs:
-                    for addr in addrs[netifaces.AF_INET]:
-                        if not addr['addr'].startswith("127."):  # Avoid loopback
-                            return addr['addr']
-        return local_ip
-    except Exception as e:
-        print(f"❌ Error getting local IP: {e}")
-        return None
-
-def get_network_range(ip):
-    """ Convert local IP to subnet (e.g., 192.168.1.1 → 192.168.1.0/24) """
-    try:
-        parts = ip.split(".")
-        return f"{parts[0]}.{parts[1]}.{parts[2]}.0/24"  # Use /24 subnet
+        response = requests.head(url, allow_redirects=True, timeout=5)
+        return response.url
     except:
-        return None
+        return url
 
-def scan_network(network_range):
-    """ Perform an Nmap scan on the correct subnet """
-    print(f"\n[+] Scanning network: {network_range}")
-    
+# Function to get domain information
+def get_domain_info(url):
     try:
-        # Run Nmap command and capture output
-        result = subprocess.check_output(["nmap", "-sn", network_range], stderr=subprocess.DEVNULL).decode()
-        
-        # Extract device IPs
-        active_hosts = re.findall(r"Nmap scan report for (\d+\.\d+\.\d+\.\d+)", result)
+        domain = urllib.parse.urlparse(url).netloc
+        ip_address = socket.gethostbyname(domain)
+        domain_info = whois.whois(domain)
 
-        if active_hosts:
-            print("\n[+] Active Devices Found:")
-            for ip in active_hosts:
-                print(f"    - {ip}")
-        else:
-            print("\n❌ No active devices found.")
-    except Exception as e:
-        print(f"\n❌ Error running Nmap: {e}")
+        return {
+            "Domain": domain,
+            "IP Address": ip_address,
+            "Registrar": domain_info.registrar,
+            "Creation Date": domain_info.creation_date,
+            "Expiration Date": domain_info.expiration_date
+        }
+    except:
+        return {"Error": "Unable to fetch domain details"}
+
+# Function to check if the URL is in known blacklists
+def check_blacklist(url):
+    blacklists = [
+        "https://openphish.com/feed.txt",
+        "https://raw.githubusercontent.com/mitchellkrogza/Phishing.Database/master/phishing-links/output/domains.txt"
+    ]
+    domain = urllib.parse.urlparse(url).netloc
+
+    for bl in blacklists:
+        try:
+            response = requests.get(bl, timeout=5)
+            if domain in response.text:
+                return f"⚠️ WARNING: {domain} is blacklisted!"
+        except:
+            pass
+
+    return "✅ URL not found in public blacklists."
+
+# Function to extract hidden links from the page
+def extract_links(url):
+    try:
+        response = requests.get(url, timeout=5)
+        links = re.findall(r'href=[\'"]?([^\'" >]+)', response.text)
+        return links[:5]  # Show first 5 links
+    except:
+        return ["❌ Could not retrieve links."]
+
+# Main Function
+def scan_link():
+    url = input("🔗 Enter the URL to scan: ")
+
+    print("\n🔍 Expanding URL...")
+    expanded_url = expand_short_url(url)
+    print(f"✅ Final URL: {expanded_url}")
+
+    print("\n🌍 Checking Domain Information...")
+    domain_info = get_domain_info(expanded_url)
+    for key, value in domain_info.items():
+        print(f"   {key}: {value}")
+
+    print("\n🛡️ Checking Blacklists...")
+    print(check_blacklist(expanded_url))
+
+    print("\n🔗 Extracting Hidden Links...")
+    links = extract_links(expanded_url)
+    for link in links:
+        print(f"   ➤ {link}")
+
+    print("\n✅ Scan Completed!")
 
 if __name__ == "__main__":
-    local_ip = get_local_ip()
-    
-    if local_ip:
-        print(f"[+] Your Device IP Address: {local_ip}")
-        network_range = get_network_range(local_ip)
-        
-        if network_range:
-            print(f"[+] Network Range Identified: {network_range}")
-            scan_network(network_range)
-        else:
-            print("❌ Failed to determine network range.")
-    else:
-        print("❌ Failed to get local IP.")
+    scan_link()
