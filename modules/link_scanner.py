@@ -3,9 +3,17 @@ import socket
 import whois
 import urllib.parse
 import re
-import time
 
-# Function to expand shortened URLs
+# List of known phishing keywords in URLs
+SUSPICIOUS_KEYWORDS = ["login", "bank", "paypal", "secure", "verify", "update", "account", "confirm"]
+
+# List of public phishing blacklists
+BLACKLIST_URLS = [
+    "https://openphish.com/feed.txt",
+    "https://raw.githubusercontent.com/mitchellkrogza/Phishing.Database/master/phishing-links/output/domains.txt"
+]
+
+# Expand Shortened URLs
 def expand_short_url(url):
     try:
         response = requests.head(url, allow_redirects=True, timeout=5)
@@ -13,13 +21,12 @@ def expand_short_url(url):
     except:
         return url
 
-# Function to get domain information
+# Get Domain Information
 def get_domain_info(url):
     try:
         domain = urllib.parse.urlparse(url).netloc
         ip_address = socket.gethostbyname(domain)
         domain_info = whois.whois(domain)
-
         return {
             "Domain": domain,
             "IP Address": ip_address,
@@ -30,25 +37,19 @@ def get_domain_info(url):
     except:
         return {"Error": "Unable to fetch domain details"}
 
-# Function to check if the URL is in known blacklists
+# Check if URL is in Blacklists
 def check_blacklist(url):
-    blacklists = [
-        "https://openphish.com/feed.txt",
-        "https://raw.githubusercontent.com/mitchellkrogza/Phishing.Database/master/phishing-links/output/domains.txt"
-    ]
     domain = urllib.parse.urlparse(url).netloc
-
-    for bl in blacklists:
+    for bl_url in BLACKLIST_URLS:
         try:
-            response = requests.get(bl, timeout=5)
+            response = requests.get(bl_url, timeout=5)
             if domain in response.text:
-                return f"⚠️ WARNING: {domain} is blacklisted!"
+                return "❌ UNSAFE: URL is Blacklisted!"
         except:
             pass
+    return "✅ SAFE: URL is not in Blacklists."
 
-    return "✅ URL not found in public blacklists."
-
-# Function to extract hidden links from the page
+# Extract Hidden Links from the Page
 def extract_links(url):
     try:
         response = requests.get(url, timeout=5)
@@ -57,8 +58,15 @@ def extract_links(url):
     except:
         return ["❌ Could not retrieve links."]
 
-# Main Function
-def scan_link():
+# Check for Suspicious Keywords
+def check_suspicious_keywords(url):
+    for keyword in SUSPICIOUS_KEYWORDS:
+        if keyword in url.lower():
+            return "⚠️ WARNING: URL contains suspicious words!"
+    return "✅ No suspicious words detected."
+
+# Main Scanner Function
+def scan_url():
     url = input("🔗 Enter the URL to scan: ")
 
     print("\n🔍 Expanding URL...")
@@ -71,14 +79,26 @@ def scan_link():
         print(f"   {key}: {value}")
 
     print("\n🛡️ Checking Blacklists...")
-    print(check_blacklist(expanded_url))
+    blacklist_result = check_blacklist(expanded_url)
+    print(blacklist_result)
 
     print("\n🔗 Extracting Hidden Links...")
     links = extract_links(expanded_url)
     for link in links:
         print(f"   ➤ {link}")
 
+    print("\n🔎 Checking for Suspicious Keywords...")
+    keyword_result = check_suspicious_keywords(expanded_url)
+    print(keyword_result)
+
+    # Final Verdict
+    print("\n🚀 Final Verdict:")
+    if "UNSAFE" in blacklist_result or "WARNING" in keyword_result:
+        print("❌ This URL is **UNSAFE**! Do not visit.")
+    else:
+        print("✅ This URL is **SAFE**!")
+
     print("\n✅ Scan Completed!")
 
 if __name__ == "__main__":
-    scan_link()
+    scan_url()
