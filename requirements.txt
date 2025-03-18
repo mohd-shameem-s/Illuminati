@@ -1,5 +1,5 @@
 scapy
-nmap
+python-nmap
 netifaces
 beautifulsoup4
 lxml
@@ -14,3 +14,4 @@ time
 faker
 matplotlib
 networkx
+
