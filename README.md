@@ -7,6 +7,15 @@ Illuminati is a powerful cybersecurity toolkit designed for penetration testers,
 ✅ Optimized for **Kali Linux 2024+**  
 ✅ Designed for **Educational and Penetration Testing Purposes Only**  
 
+
+## 💻 Installation
+```bash
+git clone https://github.com/yourgithub/Illuminati.git
+cd Illuminati
+pip3 install -r requirements.txt
+sudo python3 illuminati.py
+```
+
 ## 🚀 Features
 
 ### 1. Location Finder 📍
@@ -182,13 +191,7 @@ Target Device MAC Address: XX:XX:XX:XX:XX:XX
 
 ---
 
-## 💻 Installation
-```bash
-git clone https://github.com/yourgithub/Illuminati.git
-cd Illuminati
-pip3 install -r requirements.txt
-python3 illuminati.py
-```
+
 
 ## 📜 Legal Disclaimer
 This tool is for educational and research purposes only. The misuse of this tool for illegal purposes is strictly prohibited. The developer is not responsible for any misuse or damage caused by this tool.
