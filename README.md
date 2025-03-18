@@ -1,7 +1,7 @@
 
 # 💀 Illuminati -  The Cyber Weapon You Always Needed !
 
-Illuminati is a powerful cybersecurity toolkit designed for penetration testers, ethical hackers, and network administrators. It offers a range of advanced features to perform network mapping, IP tracking, SMS bombing, call bombing, and much more.
+Illuminati is a powerful cybersecurity toolkit designed for penetration testers, ethical hackers, and network administrators. It offers a range of advanced features to perform network mapping, IP tracking, Wi-Fi attacks, metadata extraction, and more.
 
 ✅ Built by **[Mohammed Shameem S](https://github.com/mohd-shameem-s)**  
 ✅ Optimized for **Kali Linux 2024+**  
@@ -9,7 +9,7 @@ Illuminati is a powerful cybersecurity toolkit designed for penetration testers,
 
 ## 🚀 Features
 
-### 1. ✔ Location Finder 📍
+### 1. Location Finder 📍
 **-> Track IP Geolocation of any public IP address.**
 
 **-> Retrieve details like Country, City, ISP, Coordinates, and Google Maps Link.**
@@ -29,7 +29,7 @@ Enter IP Address: 100.109.142.38
 
 ---
 
-### 2. ✔ IP Identifier 🌐
+### 2. IP Identifier 🌐
 **-> Retrieve complete information of any IP address or domain.**
 
 **-> Find Hostname, ISP, IP Range, and Autonomous System Number.**
@@ -45,7 +45,7 @@ Enter IP Address: 172.217.166.110
 
 ---
 
-### 3. ✔ Network Scanner 🖥️
+### 3. Network Scanner 🖥️
 **-> Scan all connected devices on your network.**
 
 **-> Get IP, MAC Address, Device Type, and Open Ports.**
@@ -60,7 +60,7 @@ Scanning your network...
 
 ---
 
-### 4. ✔ Network Mapper 🗺️
+### 4. Network Mapper 🗺️
 **-> Generate a full Network Topology Map.**
 
 **-> Identify Routers, Switches, Gateways, and VLANs.**
@@ -76,7 +76,7 @@ Network map generated successfully as 'network_map.png'
 
 ---
 
-### 5. ✔ Link Scanner 🔗
+### 5. Link Scanner 🔗
 **-> Scan any website link for vulnerabilities.**
 
 **-> Check SSL, Headers, Open Ports, etc.**
@@ -93,7 +93,7 @@ Enter URL: https://example.com
 
 ---
 
-### 6. ✔ Data Capture 📡
+### 6. Data Capture 📡
 **->Capture and Analyze Real-Time Network Traffic.**
 
 **Example Output:**
@@ -107,7 +107,7 @@ Capturing Network Traffic...
 
 ---
 
-### 7. ✔ Track Mobile Location 📲
+### 7. Track Mobile Location 📲
 **->Track Live Location of any Mobile Number.**
 
 **Example Output:**
@@ -123,38 +123,61 @@ Enter Mobile Number: +9198xx54xx10
 
 ---
 
-### 8. ✔ SMS Bomber 💣
-**->Flood unlimited SMS to the target number.**
+### 8. Metadata Extractor 🗂️
+**->Extract hidden metadata from images, documents, and PDFs.**
+
+**->Get details like Author, GPS Location, Device Info, and Modification History.**
 
 **Example Output:**
 ```
-Enter Target Phone Number: +9198xx54xx10
-Number of SMS to Send: 10
-[1/10] ✅ SMS Sent Successfully
-[2/10] ✅ SMS Sent Successfully
-[3/10] ✅ SMS Sent Successfully
-...
-[10/10] ✅ SMS Sent Successfully
+Enter File Path: example.jpg
+[+] File: example.jpg
+[+] Author: John Doe
+[+] Camera Model: Canon EOS 80D
+[+] GPS Coordinates: 37.7749° N, 122.4194° W
+[+] Created On: 2024-03-10
+
 ```
 
 ---
 
-### 9. ✔ Call Bomber 📞
-**->Flood unlimited calls to the target number.**
+### 9. Network Traffic Analyzer 📊
+**Monitor and analyze real-time packet flow in your network.**
+**->Identify suspicious connections, malware traffic, and unknown devices.**
 
 **Example Output:**
 ```
-Enter Target Phone Number: +9198xx54xx10
-Number of Calls to Make: 5
-[1/5] ✅ Call Sent Successfully
-[2/5] ✅ Call Sent Successfully
-...
-[5/5] ✅ Call Sent Successfully
+Monitoring Network Traffic...
+[+] Detected Suspicious Connection: 192.168.1.5 -> 45.67.89.23 (Unknown IP)
+[+] High Data Usage Alert: Device 192.168.1.10 is sending 500MB/sec
+[+] Packet Logs Saved to 'traffic_log.txt'
 ```
 
 ---
 
-### 10. ✔ Exit 🚪
+### 10. Wi-Fi Deauthentication Attack 🚀
+**->Disconnect devices from a Wi-Fi network using aircrack-ng.**
+
+**->Target a specific device or all devices on a network.**
+
+**Example Output:**
+```
+Available Wi-Fi Networks:
+1. Home_WiFi
+2. Office_Network
+3. Public_Hotspot
+
+Select a network to attack: 1
+[+] Scanning connected devices...
+[+] Found 5 devices
+Target Device MAC Address: XX:XX:XX:XX:XX:XX
+[+] Sending Deauth Packets... 🚀
+[+] Target Disconnected Successfully!
+```
+
+---
+
+### 11. Exit 🚪
 **->Quit the Illuminati Cyber Toolkit.**
 
 ---
