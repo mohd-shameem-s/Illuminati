@@ -10,27 +10,29 @@ def display_menu():
     print("""
     📜 MENU - Illuminati Cyber Toolkit 📜
 
-    1. Location Finder 📍- Track IP geolocation details (Country, City, ISP, etc.)
+    1. Location Finder 📍 - Track IP geolocation details (Country, City, ISP, etc.)
 
     2. IP Identifier 🌐 - Get Hostname, ISP, and Network Details of any IP.
 
     3. Network Scanner 🖥️ - Scan all connected devices in your network.
 
-    4. Network Mapper 🗺️- Generate a full Network Topology Map.
+    4. Network Mapper 🗺️ - Generate a full Network Topology Map.
 
     5. Link Scanner 🔗 - Scan any website link for vulnerabilities.
 
     6. Data Capture 📡 - Capture and Analyze Real-Time Network Traffic.
 
-    7. Track Mobile Location 📲 - Track Live Location of any Mobile Number.
+    7. Network Traffic Analyzer 📊 - Monitor & Analyze live network traffic with alerts.
 
-    8. SMS Bomber 💣 - Flood unlimited SMS to the target number.
+    8. Track Mobile Location 📲 - Track live location of any mobile number.
 
-    9. Call Bomber 📞 - Flood unlimited calls to the target number.
+    9. Metadata Extractor 🗂️ - Extract metadata from images, PDFs, and documents.
 
-    10.Exit 🚪 - Quit the Illuminati Cyber Toolkit.
+    10. Wi-Fi Deauthentication Attack ⚠️ - Disconnect devices from a Wi-Fi network.
 
-    💀 Use Responsibly - Illuminati Hacker Tool 💀
+    11. Exit 🚪 - Quit the Illuminati Cyber Toolkit.
+
+    💀 Use Responsibly - Illuminati Cybersecurity Tool 💀
     """)
 
 def main():
@@ -55,12 +57,14 @@ def main():
         elif option == "6":
             os.system("sudo python3 modules/data_capture.py")
         elif option == "7":
-            os.system("python3 modules/mobile_tracker.py")
+            os.system("sudo python3 modules/network_traffic_analyzer.py")
         elif option == "8":
-            os.system("python3 modules/sms_bomber.py")
+            os.system("python3 modules/mobile_tracker.py")
         elif option == "9":
-            os.system("python3 modules/call_bomber.py")
+            os.system("python3 modules/metadata_extractor.py")
         elif option == "10":
+            os.system("sudo python3 modules/wifi_deauth.py")
+        elif option == "11":
             print("\n💀 Exiting Illuminati... Stay Secure 💀")
             break
         else:
