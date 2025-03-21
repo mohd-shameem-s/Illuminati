@@ -2,8 +2,10 @@ import os
 
 # Function to display the ASCII logo
 def display_logo():
-    with open("ascii_logo.txt", "r") as file:
-        print(file.read())
+    with open("illuminati.txt", "r") as file:
+        content = file.read()
+    print("\033[32m" + content + "\033[0m")  
+
 
 # Function to display the menu with usage instructions
 def display_menu():
@@ -14,9 +16,9 @@ def display_menu():
 
     2. IP Identifier 🌐 - Get Hostname, ISP, and Network Details of any IP.
 
-    3. Network Scanner 🖥️ - Scan all connected devices in your network.
+    3. Network Scanner 🖥 - Scan all connected devices in your network.
 
-    4. Network Mapper 🗺️ - Generate a full Network Topology Map.
+    4. Network Mapper 🗺 - Generate a full Network Topology Map.
 
     5. Link Scanner 🔗 - Scan any website link for vulnerabilities.
 
@@ -26,11 +28,13 @@ def display_menu():
 
     8. Track Mobile Location 📲 - Track live location of any mobile number.
 
-    9. Metadata Extractor 🗂️ - Extract metadata from images, PDFs, and documents.
+    9. Metadata Extractor 🗂 - Extract metadata from images, PDFs, and documents.
 
-    10. Wi-Fi Deauthentication Attack ⚠️ - Disconnect devices from a Wi-Fi network.
+    10. Subdomain & Port Scanner 🔍 - Discover Open Ports & Active Subdomains.
 
-    11. Exit 🚪 - Quit the Illuminati Cyber Toolkit.
+    11. Password Strength Checker 🔑 - Test Your Password Security.
+
+    12. Exit 🚪 - Quit the Illuminati Cyber Toolkit.
 
     💀 Use Responsibly - Illuminati Cybersecurity Tool 💀
     """)
@@ -63,8 +67,10 @@ def main():
         elif option == "9":
             os.system("python3 modules/metadata_extractor.py")
         elif option == "10":
-            os.system("sudo python3 modules/wifi_deauth.py")
+            os.system("python3 subdomain_port_scanner.py")
         elif option == "11":
+            os.system("python3 password_strength_checker.py")
+        elif option == "12":
             print("\n💀 Exiting Illuminati... Stay Secure 💀")
             break
         else:
