@@ -2,7 +2,7 @@ import os
 
 # Function to display the ASCII logo
 def display_logo():
-    with open("illuminati.txt", "r") as file:
+    with open("ascii_logo.txt", "r") as file:
         content = file.read()
     print("\033[32m" + content + "\033[0m")  
 
