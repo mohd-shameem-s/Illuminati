@@ -67,9 +67,9 @@ def main():
         elif option == "9":
             os.system("python3 modules/metadata_extractor.py")
         elif option == "10":
-            os.system("python3 subdomain_port_scanner.py")
+            os.system("python3 modules/subdomain_port_scanner.py")
         elif option == "11":
-            os.system("python3 password_strength_checker.py")
+            os.system("python3 modules/password_strength_checker.py")
         elif option == "12":
             print("\n💀 Exiting Illuminati... Stay Secure 💀")
             break
