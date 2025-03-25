@@ -10,9 +10,12 @@ Illuminati is a powerful cybersecurity toolkit designed for penetration testers,
 
 ## 💻 Installation
 ```bash
-git clone https://github.com/mohd-shameem-s/illuminati.git
+sudo apt update && sudo apt upgrade -y
+sudo apt install python3 python3-pip git -y
+git clone https://github.com/your-username/Illuminati.git
 cd Illuminati
-pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt --break-system-packages
+chmod +x illuminati.py
 sudo python3 illuminati.py
 ```
 
