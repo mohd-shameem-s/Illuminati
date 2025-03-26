@@ -3,9 +3,9 @@ socket
 whois
 urllib3
 re
-sublist3r
+git+https://github.com/aboul3la/Sublist3r.git
 pyshark
-nmap
+python-nmap
 lxml
 termcolor
 packaging
