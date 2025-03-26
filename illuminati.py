@@ -47,7 +47,7 @@ def main():
         
         # User input
         option = input("💀 Choose an option: ")
-        
+    
         if option == "1":
             os.system("python3 modules/location_finder.py")
         elif option == "2":
@@ -71,10 +71,10 @@ def main():
         elif option == "11":
             os.system("python3 modules/password_strength_checker.py")
         elif option == "12":
-            print("\n💀 Exiting Illuminati... Stay Secure 💀")
+            print("\n\033[94m💀 Exiting Illuminati... Stay Secure 💀\033[0m")
             break
         else:
-            print("\n❌ Invalid option. Try again.")
+            print("\n\033[91m❌ Invalid option. Try again.\033[0m")
         
         # ✅ Separator after each module execution
         print("\n" + "-"*60)
