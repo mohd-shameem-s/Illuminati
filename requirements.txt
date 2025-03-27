@@ -1,5 +1,4 @@
 requests
-socket
 whois
 urllib3
 re
