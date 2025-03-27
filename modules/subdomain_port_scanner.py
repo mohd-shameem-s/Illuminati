@@ -1,8 +1,8 @@
 import os
 import subprocess
 import shutil
-import re
 import sys
+import requests
 
 # Function to install missing tools
 def install_tool(tool_name, install_command):
@@ -15,20 +15,6 @@ def install_tool(tool_name, install_command):
 def check_tool_installed(tool):
     """Check if a command-line tool is installed."""
     return shutil.which(tool) is not None
-
-# Ensure Sublist3r is installed
-try:
-    import sublist3r
-    SUBLIST3R_AVAILABLE = True
-except ImportError:
-    SUBLIST3R_AVAILABLE = False
-    install_tool("sublist3r", "pip install git+https://github.com/aboul3la/Sublist3r.git@master")
-    try:
-        import sublist3r
-        SUBLIST3R_AVAILABLE = True
-    except ImportError:
-        print("\033[91m[❌] Failed to install Sublist3r. Please install it manually.\033[0m")
-        sys.exit(1)
 
 # Function to scan open ports
 def scan_ports(target):
@@ -51,55 +37,59 @@ def scan_ports(target):
 
 # Function to scan subdomains
 def scan_subdomains(target):
-    """Find active subdomains using Sublist3r or fallback to Amass."""
+    """Find active subdomains using multiple alternative methods."""
+    print(f"\n\033[94m[🔍] Scanning for active subdomains of {target}...\033[0m\n")
 
-    if SUBLIST3R_AVAILABLE:
-        print(f"\n\033[94m[🔍] Scanning for active subdomains of {target} using Sublist3r...\033[0m\n")
+    found_subdomains = set()
 
+    # Method 1: Amass
+    if check_tool_installed("amass"):
+        print("\033[94m[🛠] Using Amass for subdomain enumeration...\033[0m")
         try:
-            subdomains = sublist3r.main(
-                domain=target,
-                threads=40,
-                savefile=None,
-                ports=None,
-                silent=True,
-                verbose=False,
-                enable_bruteforce=False,
-                engines=None
-            )
-
-            if subdomains:
-                print("\n\033[92m[✔] Found Subdomains:\033[0m")
-                for sub in subdomains:
-                    print(f"  - {sub}")
-            else:
-                print("\033[93m[⚠️] No active subdomains found.\033[0m")
-
-        except (IndexError, Exception):
-            print("\033[93m[⚠️] Sublist3r encountered an issue. Trying Amass instead...\033[0m")
-            use_amass(target)
-
+            command = f"amass enum -d {target}"
+            result = subprocess.getoutput(command)
+            if result.strip():
+                found_subdomains.update(result.splitlines())
+        except Exception:
+            print("\033[93m[⚠️] Amass encountered an issue.\033[0m")
     else:
-        print("\n\033[93m[⚠️] Sublist3r is not installed. Using Amass instead...\033[0m\n")
-        use_amass(target)
+        print("\033[93m[⚠️] Amass is not installed. Skipping...\033[0m")
 
-# Function to use Amass if Sublist3r fails
-def use_amass(target):
-    """Use Amass to find subdomains if Sublist3r fails."""
-    install_tool("amass", "sudo apt install amass -y")
+    # Method 2: Assetfinder
+    if check_tool_installed("assetfinder"):
+        print("\033[94m[🛠] Using Assetfinder for subdomain enumeration...\033[0m")
+        try:
+            command = f"assetfinder --subs-only {target}"
+            result = subprocess.getoutput(command)
+            if result.strip():
+                found_subdomains.update(result.splitlines())
+        except Exception:
+            print("\033[93m[⚠️] Assetfinder encountered an issue.\033[0m")
+    else:
+        print("\033[93m[⚠️] Assetfinder is not installed. Skipping...\033[0m")
 
-    print(f"\n\033[94m[🔍] Scanning for active subdomains of {target} using Amass...\033[0m\n")
-    
+    # Method 3: Crt.sh (Certificate Transparency logs)
+    print("\033[94m[🛠] Using Crt.sh for subdomain enumeration...\033[0m")
     try:
-        command = f"amass enum -d {target}"
-        result = subprocess.getoutput(command)
-
-        if not result.strip():
-            print("\033[93m[⚠️] No active subdomains found.\033[0m")
+        url = f"https://crt.sh/?q={target}&output=json"
+        response = requests.get(url, timeout=10)
+        if response.status_code == 200:
+            json_data = response.json()
+            for entry in json_data:
+                name_value = entry.get("name_value", "")
+                subdomains = name_value.split("\n")
+                found_subdomains.update(subdomains)
         else:
-            print(result)
-
+            print("\033[93m[⚠️] Crt.sh request failed.\033[0m")
     except Exception:
+        print("\033[93m[⚠️] Crt.sh encountered an issue.\033[0m")
+
+    # Display Results
+    if found_subdomains:
+        print("\n\033[92m[✔] Found Subdomains:\033[0m")
+        for sub in sorted(found_subdomains):
+            print(f"  - {sub}")
+    else:
         print("\033[93m[⚠️] No active subdomains found.\033[0m")
 
 # Main script execution
