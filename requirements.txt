@@ -3,7 +3,7 @@ socket
 whois
 urllib3
 re
-git+https://github.com/aboul3la/Sublist3r.git
+git+https://github.com/aboul3la/Sublist3r.git@master
 pyshark
 python-nmap
 lxml
@@ -11,3 +11,7 @@ termcolor
 packaging
 appdirs
 PyPDF2
+exifread
+python-docx
+olefile
+Pillow
