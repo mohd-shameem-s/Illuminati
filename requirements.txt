@@ -1,11 +1,11 @@
-requests
+requests==2.31.0
 socket
 whois
 urllib3
 re
 git+https://github.com/aboul3la/Sublist3r.git@master
-pyshark
-python-nmap
+pyshark==0.6
+python-nmap==0.7.1
 lxml
 termcolor
 packaging
@@ -14,4 +14,9 @@ PyPDF2
 exifread
 python-docx
 olefile
-Pillow
+Pillow==10.0.0
+geoip2==4.7.0
+scapy==2.5.0
+matplotlib==3.8.2
+beautifulsoup4==4.12.2
+phonenumbers==8.13.20
