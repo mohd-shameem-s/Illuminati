@@ -153,38 +153,55 @@ Enter File Path: example.jpg
 
 ---
 
-### 9. Network Traffic Analyzer 📊
-**Monitor and analyze real-time packet flow in your network.**
-**->Identify suspicious connections, malware traffic, and unknown devices.**
+### 9. Subdomain & Port Scanner 🌐
+**-> Scan any target domain for active subdomains using Amass and Subfinder.**
+
+**-> Perform a detailed Nmap scan to discover open ports and running services.**
 
 **Example Output:**
 ```
-Monitoring Network Traffic...
-[+] Detected Suspicious Connection: 192.168.1.5 -> 45.67.89.23 (Unknown IP)
-[+] High Data Usage Alert: Device 192.168.1.10 is sending 500MB/sec
-[+] Packet Logs Saved to 'traffic_log.txt'
+Enter Domain: example.com
+[+] Found Subdomains:
+ - mail.example.com
+ - blog.example.com
+ - dev.example.com
+
+[+] Starting Nmap Port Scan...
+ - Open Port: 22 (SSH)
+ - Open Port: 80 (HTTP)
+ - Open Port: 443 (HTTPS)
+Port Scan Completed Successfully.
+
 ```
 
 ---
 
-### 10. Wi-Fi Deauthentication Attack 🚀
-**->Disconnect devices from a Wi-Fi network using aircrack-ng.**
+### 10. Password Strength Checker 🔐
+**-> Check the strength of passwords based on complexity, length, and common patterns.**
 
-**->Target a specific device or all devices on a network.**
+**-> Suggest improvements for weak passwords.**
 
 **Example Output:**
 ```
-Available Wi-Fi Networks:
-1. Home_WiFi
-2. Office_Network
-3. Public_Hotspot
+🔐 Enter your password to check its strength: Admin123
 
-Select a network to attack: 1
-[+] Scanning connected devices...
-[+] Found 5 devices
-Target Device MAC Address: XX:XX:XX:XX:XX:XX
-[+] Sending Deauth Packets... 🚀
-[+] Target Disconnected Successfully!
+🔐 Checking Password Strength...
+
+[✅] Length (>= 12 chars): ❌
+[✅] Uppercase Letter
+[✅] Lowercase Letter
+[✅] Digit
+[❌] Special Character
+
+[⚠] WARNING: This is a commonly used weak password!
+
+[+] Password Strength: Very Weak ❌
+
+📌 Suggestions to improve your password:
+ - Use at least 12 characters.
+ - Add special characters (e.g., !@#$%).
+ - Avoid common passwords (e.g., 'admin', '123456', 'password').
+
 ```
 
 ---
