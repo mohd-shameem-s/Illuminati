@@ -1,3 +1,5 @@
+#!/usr/bin/python3.13
+
 import os
 import shutil
 import asyncio
