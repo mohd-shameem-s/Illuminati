@@ -1,3 +1,4 @@
+#!/usr/bin/python3.13
 import os
 
 # Function to display the ASCII logo
