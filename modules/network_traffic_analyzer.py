@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.13
 
 import os
 import pyshark
