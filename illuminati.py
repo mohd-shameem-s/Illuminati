@@ -1,6 +1,7 @@
-#!/usr/bin/python3.13
+#!/usr/bin/python3
 import os
 import sys
+PYTHON = sys.executable  # Automatically detects active Python interpreter
 
 # Function to display the ASCII logo
 def display_logo():
@@ -42,8 +43,6 @@ def display_menu():
     """)
 
 def main():
-    PY = "/usr/bin/python3.13"
-
     while True:
         display_logo()
         display_menu()
@@ -51,27 +50,27 @@ def main():
         option = input("💀 Choose an option: ")
     
         if option == "1":
-            os.system(f"{PY} modules/location_finder.py")
+            os.system(f"{PYTHON} modules/location_finder.py")
         elif option == "2":
-            os.system(f"{PY} modules/ip_identifier.py")
+            os.system(f"{PYTHON} modules/ip_identifier.py")
         elif option == "3":
-            os.system(f"{PY} modules/scan_network.py")
+            os.system(f"{PYTHON} modules/scan_network.py")
         elif option == "4":
-            os.system(f"{PY} modules/network_map.py")
+            os.system(f"{PYTHON} modules/network_map.py")
         elif option == "5":
-            os.system(f"{PY} modules/link_scanner.py")
+            os.system(f"{PYTHON} modules/link_scanner.py")
         elif option == "6":
-            os.system(f"sudo {PY} modules/data_capture.py")
+            os.system(f"sudo {PYTHON} modules/data_capture.py")
         elif option == "7":
-            os.system(f"sudo {PY} modules/network_traffic_analyzer.py")
+            os.system(f"sudo {PYTHON} modules/network_traffic_analyzer.py")
         elif option == "8":
-            os.system(f"{PY} modules/mobile_tracker.py")
+            os.system(f"{PYTHON} modules/mobile_tracker.py")
         elif option == "9":
-            os.system(f"{PY} modules/metadata_extractor.py")
+            os.system(f"{PYTHON} modules/metadata_extractor.py")
         elif option == "10":
-            os.system(f"{PY} modules/subdomain_port_scanner.py")
+            os.system(f"{PYTHON} modules/subdomain_port_scanner.py")
         elif option == "11":
-            os.system(f"{PY} modules/password_strength_checker.py")
+            os.system(f"{PYTHON} modules/password_strength_checker.py")
         elif option == "12":
             print("\n\033[94m💀 Exiting Illuminati... Stay Secure 💀\033[0m")
             break
