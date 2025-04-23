@@ -26,34 +26,12 @@ sudo python3 illuminati.py
 
 **-> Retrieve details like Country, City, ISP, Coordinates, and Google Maps Link.**
 
-**Example Output:**
-```
-Enter IP Address: 100.109.142.38
-[+] IP Address: 100.109.142.38
-[+] Country: India
-[+] Region: Tamil Nadu
-[+] City: Chennai
-[+] ISP: Airtel
-[+] Latitude: ab.cdef
-[+] Longitude: gh.ijkh
-[+] Google Maps Link: https://maps.google.com/?q=ab.cdef,gh.ijkh
-```
-
 ---
 
 ### 2. IP Identifier 🌐
 **-> Retrieve complete information of any IP address or domain.**
 
 **-> Find Hostname, ISP, IP Range, and Autonomous System Number.**
-
-**Example Output:**
-```
-Enter IP Address: 172.217.166.110
-[+] Hostname: bom07s17-in-f14.1e100.net
-[+] ISP: Google LLC
-[+] Organization: Google LLC
-[+] Country: United States
-```
 
 ---
 
@@ -62,29 +40,12 @@ Enter IP Address: 172.217.166.110
 
 **-> Get IP, MAC Address, Device Type, and Open Ports.**
 
-**Example Output:**
-```
-Scanning your network...
-[+] Device: Phone - 192.168.1.12 - MAC: 08:ED:6F:XX:XX:XX
-[+] Device: Laptop - 192.168.1.14 - MAC: 9A:1B:2C:XX:XX:XX
-[+] Device: PC - 192.168.1.15 - MAC: 6B:3E:8F:XX:XX:XX
-```
-
 ---
 
 ### 4. Network Mapper 🗺️
 **-> Generate a full Network Topology Map.**
 
 **-> Identify Routers, Switches, Gateways, and VLANs.**
-
-**Example Output:**
-```
-Generating Network Map...
-[+] Router -> Laptop -> Mobile -> PC
-[+] Router -> IoT Device
-[+] Router -> Printer
-Network map generated successfully as 'network_map.png'
-```
 
 ---
 
@@ -93,45 +54,15 @@ Network map generated successfully as 'network_map.png'
 
 **-> Check SSL, Headers, Open Ports, etc.**
 
-**Example Output:**
-```
-Enter URL: https://example.com
-[+] Scanning for vulnerabilities...
-[+] Found XSS Vulnerability
-[+] Found SQL Injection Vulnerability
-[+] Found Directory Traversal Vulnerability
-[+] Website Status: Unsecure
-```
-
 ---
 
 ### 6. Data Capture 📡
 **->Capture and Analyze Real-Time Network Traffic.**
 
-**Example Output:**
-```
-Capturing Network Traffic...
-[+] Source IP: 192.168.1.12 -> Destination IP: 192.168.1.1
-[+] Protocol: TCP
-[+] Packet Size: 512 bytes
-[+] Data Captured Successfully
-```
-
 ---
 
 ### 7. Track Mobile Location 📲
 **->Track Live Location of any Mobile Number.**
-
-**Example Output:**
-```
-Enter Mobile Number: +9198xx54xx10
-[+] Phone Number: +9198xx54xx10
-[+] Location: Bangalore, Karnataka
-[+] Service Provider: Airtel
-[+] Latitude: ab.cdef
-[+] Longitude: gh.ijkh
-[+] Google Maps Link: https://maps.google.com/?q=ab.cdef,gh.ijkh
-```
 
 ---
 
@@ -140,17 +71,6 @@ Enter Mobile Number: +9198xx54xx10
 
 **->Get details like Author, GPS Location, Device Info, and Modification History.**
 
-**Example Output:**
-```
-Enter File Path: example.jpg
-[+] File: example.jpg
-[+] Author: John Doe
-[+] Camera Model: Canon EOS 80D
-[+] GPS Coordinates: 37.7749° N, 122.4194° W
-[+] Created On: 2024-03-10
-
-```
-
 ---
 
 ### 9. Subdomain & Port Scanner 🌐
@@ -158,51 +78,12 @@ Enter File Path: example.jpg
 
 **-> Perform a detailed Nmap scan to discover open ports and running services.**
 
-**Example Output:**
-```
-Enter Domain: example.com
-[+] Found Subdomains:
- - mail.example.com
- - blog.example.com
- - dev.example.com
-
-[+] Starting Nmap Port Scan...
- - Open Port: 22 (SSH)
- - Open Port: 80 (HTTP)
- - Open Port: 443 (HTTPS)
-Port Scan Completed Successfully.
-
-```
-
 ---
 
 ### 10. Password Strength Checker 🔐
 **-> Check the strength of passwords based on complexity, length, and common patterns.**
 
 **-> Suggest improvements for weak passwords.**
-
-**Example Output:**
-```
-🔐 Enter your password to check its strength: Admin123
-
-🔐 Checking Password Strength...
-
-[✅] Length (>= 12 chars): ❌
-[✅] Uppercase Letter
-[✅] Lowercase Letter
-[✅] Digit
-[❌] Special Character
-
-[⚠] WARNING: This is a commonly used weak password!
-
-[+] Password Strength: Very Weak ❌
-
-📌 Suggestions to improve your password:
- - Use at least 12 characters.
- - Add special characters (e.g., !@#$%).
- - Avoid common passwords (e.g., 'admin', '123456', 'password').
-
-```
 
 ---
 
@@ -212,10 +93,9 @@ Port Scan Completed Successfully.
 ---
 
 
-
 ## 📜 Legal Disclaimer
 This tool is for educational and research purposes only. The misuse of this tool for illegal purposes is strictly prohibited. The developer is not responsible for any misuse or damage caused by this tool.
 
 
-## 💎 Developed with -`♡´- By
+## 💎 Developed with ❤️ By
 **Mohammed Shameem S**
