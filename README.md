@@ -56,9 +56,9 @@ sudo python3 illuminati.py
 ---
 
 ### 2. IP Identifier 🌐
-**-> Retrieve complete information of any IP address or domain.**
+**-> Gather detailed info about IP addresses or domains.**
 
-**-> Find Hostname, ISP, IP Range, and Autonomous System Number.**
+**-> Includes hostname, ISP, IP range, and ASN (Autonomous System Number).**
 
 ---
 
@@ -70,52 +70,63 @@ sudo python3 illuminati.py
 ---
 
 ### 4. Network Mapper 🗺️
-**-> Generate a full Network Topology Map.**
+**-> Visualize the structure of your network.**
 
-**-> Identify Routers, Switches, Gateways, and VLANs.**
+**-> Identifies gateways, routers, and subnet ranges in a topology format.**
 
 ---
 
 ### 5. Link Scanner 🔗
-**-> Scan any website link for vulnerabilities.**
+**-> Scan and evaluate URLs for potential threats.**
 
-**-> Check SSL, Headers, Open Ports, etc.**
+**-> Includes blacklist checks, header info, short URL expansion, and VirusTotal lookups.**
 
 ---
 
 ### 6. Data Capture 📡
-**->Capture and Analyze Real-Time Network Traffic.**
+**-> Capture and sniff real-time packets on your network.**
+
+**-> Requires root access; logs and analyzes incoming and outgoing data.**
 
 ---
 
-### 7. Track Mobile Location 📲
-**->Track Live Location of any Mobile Number.**
+### 7. Traffic Analyzer 📊
+**-> Monitor live network traffic with visual summaries.**
+
+**-> Graphs bandwidth usage and packet flow over time.**
 
 ---
 
-### 8. Metadata Extractor 🗂️
-**->Extract hidden metadata from images, documents, and PDFs.**
+### 8. Track Mobile Location 📲
+**-> Fetch approximate location of phone numbers.**
 
-**->Get details like Author, GPS Location, Device Info, and Modification History.**
-
----
-
-### 9. Subdomain & Port Scanner 🌐
-**-> Scan any target domain for active subdomains using Amass and Subfinder.**
-
-**-> Perform a detailed Nmap scan to discover open ports and running services.**
+**-> Uses public APIs to identify carrier, country, and region info.**
 
 ---
 
-### 10. Password Strength Checker 🔐
+### 9. Metadata Extractor 🗂️
+**-> Reveal hidden metadata in files.**
+
+**-> Supports PDFs, DOCX, and image formats; extracts authorship, GPS data, and edit history.**
+
+---
+
+### 10. Subdomain & Port Scanner 🌐
+**-> Scan for subdomains and open ports on a target domain.**
+
+**-> Integrates tools like Sublist3r, Amass, and Nmap.**
+
+---
+
+### 11. Password Strength Checker 🔐
 **-> Check the strength of passwords based on complexity, length, and common patterns.**
 
 **-> Suggest improvements for weak passwords.**
 
 ---
 
-### 11. Exit 🚪
-**->Quit the Illuminati Cyber Toolkit.**
+### 12. Exit 🚪
+**-> Quit the Illuminati Cyber Toolkit.**
 
 ---
 
