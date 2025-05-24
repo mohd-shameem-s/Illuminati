@@ -1,9 +1,5 @@
 requests
-socket
-whois
 urllib3
-re
-git+https://github.com/aboul3la/Sublist3r.git@master
 pyshark
 python-nmap
 lxml
@@ -14,7 +10,7 @@ PyPDF2
 exifread
 python-docx
 olefile
-pillow
+Pillow
 geoip2
 scapy
 matplotlib
@@ -23,8 +19,9 @@ phonenumbers
 ipapi
 folium
 geocoder
-bs4
-subprocess.run
-sublist3r
 colorama
 pyfiglet
+git+https://github.com/aboul3la/Sublist3r.git@master
+bs4
+
+
