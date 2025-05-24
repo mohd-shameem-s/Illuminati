@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 import sys
+import subprocess
 
 PYTHON = sys.executable  # Automatically detects active Python interpreter
 
@@ -43,6 +44,15 @@ def display_menu():
 💀 {BOLD}Use Responsibly - Illuminati Cybersecurity Tool 💀{RESET}
 """)
 
+def run_module(command, use_sudo=False):
+    try:
+        cmd = [PYTHON, command]
+        if use_sudo:
+            cmd.insert(0, "sudo")
+        subprocess.call(cmd)
+    except Exception as e:
+        print(f"{RED}[!] Error running {command}: {e}{RESET}")
+
 def main():
     while True:
         os.system("clear")
@@ -52,27 +62,27 @@ def main():
         option = input(f"{CYAN}💀 Choose an option: {RESET}")
 
         if option == "1":
-            os.system(f"{PYTHON} modules/location_finder.py")
+            run_module("modules/location_finder.py")
         elif option == "2":
-            os.system(f"{PYTHON} modules/ip_identifier.py")
+            run_module("modules/ip_identifier.py")
         elif option == "3":
-            os.system(f"{PYTHON} modules/scan_network.py")
+            run_module("modules/scan_network.py")
         elif option == "4":
-            os.system(f"{PYTHON} modules/network_map.py")
+            run_module("modules/network_map.py")
         elif option == "5":
-            os.system(f"{PYTHON} modules/link_scanner.py")
+            run_module("modules/link_scanner.py")
         elif option == "6":
-            os.system(f"sudo {PYTHON} modules/data_capture.py")
+            run_module("modules/data_capture.py", use_sudo=True)
         elif option == "7":
-            os.system(f"sudo {PYTHON} modules/network_traffic_analyzer.py")
+            run_module("modules/network_traffic_analyzer.py", use_sudo=True)
         elif option == "8":
-            os.system(f"{PYTHON} modules/mobile_tracker.py")
+            run_module("modules/mobile_tracker.py")
         elif option == "9":
-            os.system(f"{PYTHON} modules/metadata_extractor.py")
+            run_module("modules/metadata_extractor.py")
         elif option == "10":
-            os.system(f"{PYTHON} modules/subdomain_port_scanner.py")
+            run_module("modules/subdomain_port_scanner.py")
         elif option == "11":
-            os.system(f"{PYTHON} modules/password_strength_checker.py")
+            run_module("modules/password_strength_checker.py")
         elif option == "12":
             print(f"\n{BLUE}💀 Exiting Illuminati... Stay Secure 💀{RESET}")
             break
