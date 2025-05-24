@@ -8,14 +8,41 @@ Illuminati is a powerful cybersecurity toolkit designed for penetration testers,
 ✅ Designed for **Educational and Penetration Testing Purposes Only**  
 
 
-## 💻 Installation
+## 📦 Requirements
+
+- Python 3.8+
+- `tshark` (for PyShark - install via `sudo apt install tshark`)
+- `nmap` (for network scanning - `sudo apt install nmap`)
+- Internet connection for API-based modules (IP tracking, GeoIP, etc.)
+
+
+## 💻 Installation Steps
+🔄 Updates system package lists and upgrades installed packages
 ```bash
 sudo apt update && sudo apt upgrade -y
+```
+🐍 Installs Python 3, pip, and Git (requires Python 3.8+)
+```bash
 sudo apt install python3 python3-pip git -y
+```
+📥 Clones the Illuminati toolkit repository from GitHub
+```bash
 git clone https://github.com/mohd-shameem-s/illuminati.git
+```
+📂 Navigates into the cloned Illuminati project directory
+```bash
 cd illuminati
+```
+📦 Installs all required Python dependencies listed in requirements.txt
+```bash
 sudo pip3 install -r requirements.txt --break-system-packages
+```
+✅ Makes the main Python script executable
+```bash
 chmod +x illuminati.py
+```
+🚀 Launches the Illuminati Cyber Toolkit with root privileges
+```bash
 sudo python3 illuminati.py
 ```
 
@@ -94,7 +121,7 @@ sudo python3 illuminati.py
 
 
 ## 📜 Legal Disclaimer
-This tool is for educational and research purposes only. The misuse of this tool for illegal purposes is strictly prohibited. The developer is not responsible for any misuse or damage caused by this tool.
+> This tool is for educational and research purposes only. Any misuse of this tool for illegal activities is strictly prohibited. The developer is not responsible for any damage or consequences resulting from the use of this tool.
 
 
 ## 💎 Developed with ❤️ By
