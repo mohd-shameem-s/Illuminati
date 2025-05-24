@@ -3,7 +3,7 @@ import os
 import sys
 import subprocess
 
-PYTHON = sys.executable  # Automatically detects active Python interpreter
+PYTHON = sys.executable
 
 # ANSI Colors
 RED = "\033[91m"
@@ -14,7 +14,6 @@ CYAN = "\033[96m"
 BOLD = "\033[1m"
 RESET = "\033[0m"
 
-# Function to display the ASCII logo
 def display_logo():
     try:
         with open("ascii_logo.txt", "r") as file:
@@ -23,23 +22,22 @@ def display_logo():
     except FileNotFoundError:
         print(f"{RED}[!] ASCII Logo not found. Skipping...{RESET}")
 
-# Function to display the menu with usage instructions
 def display_menu():
     print(f"""{BOLD}{CYAN}
 📜 MENU - Illuminati Cyber Toolkit 📜{RESET}
 
-{YELLOW}1.{RESET} Location Finder 📍         - Track IP geolocation details
-{YELLOW}2.{RESET} IP Identifier 🌐            - Get Hostname, ISP, and Network info
-{YELLOW}3.{RESET} Network Scanner 🖥         - Scan connected devices on your network
-{YELLOW}4.{RESET} Network Mapper 🗺         - Generate network topology map
-{YELLOW}5.{RESET} Link Scanner 🔗           - Scan a website for vulnerabilities
-{YELLOW}6.{RESET} Data Capture 📡           - Capture & analyze real-time packets
-{YELLOW}7.{RESET} Traffic Analyzer 📊       - Live traffic monitor + alert system
-{YELLOW}8.{RESET} Track Mobile Location 📲 - Track real-time mobile GPS data
-{YELLOW}9.{RESET} Metadata Extractor 🗂     - Extract hidden metadata from files
-{YELLOW}10.{RESET} Subdomain & Port Scanner 🔍 - Discover open ports/subdomains
-{YELLOW}11.{RESET} Password Checker 🔑      - Test your password’s strength
-{YELLOW}12.{RESET} Exit 🚪                   - Quit the Illuminati Toolkit
+{YELLOW} 1.{RESET} Location Finder 📍            - Track IP geolocation
+{YELLOW} 2.{RESET} IP Identifier 🌐             - Hostname, ISP & network info
+{YELLOW} 3.{RESET} Network Scanner 🖥          - Scan devices on your LAN
+{YELLOW} 4.{RESET} Network Mapper 🗺          - Visualize network topology
+{YELLOW} 5.{RESET} Link Scanner 🔗            - Check site for threats
+{YELLOW} 6.{RESET} Data Capture 📡            - Packet sniffer & analyzer
+{YELLOW} 7.{RESET} Traffic Analyzer 📊        - Monitor live network data
+{YELLOW} 8.{RESET} Track Mobile Location 📲  - GPS-based phone tracking
+{YELLOW} 9.{RESET} Metadata Extractor 🗂      - Reveal hidden file data
+{YELLOW}10.{RESET} Subdomain & Port Scanner 🔍 - Enumerate ports/subdomains
+{YELLOW}11.{RESET} Password Checker 🔑         - Analyze password strength
+{YELLOW}12.{RESET} Exit 🚪                    - Quit Illuminati Toolkit
 
 💀 {BOLD}Use Responsibly - Illuminati Cybersecurity Tool 💀{RESET}
 """)
@@ -59,7 +57,7 @@ def main():
         display_logo()
         display_menu()
 
-        option = input(f"{CYAN}💀 Choose an option: {RESET}")
+        option = input(f"{CYAN}💀 Choose an option [1-12]: {RESET}").strip()
 
         if option == "1":
             run_module("modules/location_finder.py")
@@ -84,10 +82,12 @@ def main():
         elif option == "11":
             run_module("modules/password_strength_checker.py")
         elif option == "12":
-            print(f"\n{BLUE}💀 Exiting Illuminati... Stay Secure 💀{RESET}")
+            print(f"\n{BLUE}💀 Exiting Illuminati... Stay Secure! 💀{RESET}")
             break
         else:
-            print(f"\n{RED}❌ Invalid option. Please try again.{RESET}")
+            print(f"\n{RED}❌ Invalid option. Please enter a number between 1 and 12.{RESET}")
+            input(f"{BOLD}🔁 Press [ENTER] to try again...{RESET}")
+            continue
 
         print(f"\n{CYAN}" + "-" * 60 + f"{RESET}")
         input(f"{BOLD}💀 Press [ENTER] to return to the main menu...{RESET}")
