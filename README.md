@@ -27,7 +27,7 @@ sudo apt install python3 python3-pip git -y
 ```
 📥 Clones the Illuminati toolkit repository from GitHub
 ```bash
-git clone https://github.com/mohd-shameem-s/illuminati.git
+git clone https://github.com/mohd-shameem-s/Illuminati.git
 ```
 📂 Navigates into the cloned Illuminati project directory
 ```bash
